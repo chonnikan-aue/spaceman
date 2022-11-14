@@ -13,14 +13,14 @@ let vocab = [
 let chosenWord = "";
 let guessWord = [];
 let stageImg = [
-  "spaceship-body",
-  "spaceship-head",
-  "spaceship-window",
-  "spaceship-wing1",
-  "spaceship-wing2",
-  "spaceship-wing3",
-  "spaceship-nozzle",
-  "spaceship-fire",
+  "body",
+  "head",
+  "window",
+  "wing1",
+  "wing2",
+  "wing3",
+  "nozzle",
+  "fire",
 ];
 
 alphabet.forEach((a) => {
@@ -45,7 +45,6 @@ function changeDisplayWord() {
   wordElement.innerHTML = `<h1>${wordStr}</h1>`;
 }
 
-
 function chooseAlphabet(id) {
   let alphabetElement = document.querySelector(`#${id}`);
   let chosenAlphabet = alphabetElement.innerText.toLowerCase();
@@ -59,7 +58,7 @@ function chooseAlphabet(id) {
     }
   } else {
     let spaceshipElement = document.querySelector(".spaceship > img");
-    spaceshipElement.src = `img/${stageImg.shift()}.png`;
+    spaceshipElement.src = `img/spaceship-${stageImg.shift()}.png`;
   }
   alphabetElement.disabled = true;
   console.log(guessWord);
