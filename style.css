@@ -40,7 +40,7 @@ body {
   0% {
     opacity: 100;
   }
-  20% {
+  30% {
     opacity: 100;
     transform: translate(120px, 50%);
   }

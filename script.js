@@ -24,6 +24,7 @@ let stageImg = [
   "fire",
 ];
 let score = 0;
+let askNameModalElement = document.querySelector("#askNameModal");
 let askNameModalTitleElement = document.querySelector("#askNameModalTitle");
 let askNameModalBtn = document.querySelector("#askNameModalBtn");
 let askNameModalWordElement = document.querySelector("#askNameModalWord");
@@ -33,6 +34,42 @@ let rocketImgElement = document.querySelector("#rocket");
 alphabet.forEach((a) => {
   keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
 });
+
+startGame();
+
+function startGame() {
+  setKeyboardDisable(false);
+  randomWord();
+}
+
+function resetGame() {
+  stageImg = [
+    "body",
+    "head",
+    "window",
+    "wing1",
+    "wing2",
+    "wing3",
+    "nozzle",
+    "fire",
+  ];
+  score = 0;
+  document.body.style.backgroundImage = "url(img/earth.jpg)";
+  rocketImgElement.style.animation = "";
+  hideModal();
+  startGame();
+}
+
+function hideModal() {
+  let modal = bootstrap.Modal.getInstance(askNameModalElement);
+  modal.hide();
+}
+
+function setKeyboardDisable(bool) {
+  alphabet.forEach((a) => {
+    document.querySelector(`#${a}`).disabled = bool;
+  });
+}
 
 function randomWord() {
   let randomNum = Math.floor(Math.random() * vocab.length);
@@ -74,9 +111,7 @@ function chooseAlphabet(id) {
     rocketImgElement.src = `img/spaceship-${stageImg.shift()}.png`;
     score -= 5;
     if (stageImg.length === 0) {
-      alphabet.forEach((a) => {
-        document.querySelector(`#${a}`).disabled = true;
-      });
+      setKeyboardDisable(true);
       document.body.style.backgroundImage = "url(img/space.gif)";
       rocketImgElement.style.animation = "rocket 5s";
       setTimeout(() => {
@@ -98,5 +133,3 @@ function modifyModal(str) {
   askNameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
   askNameModalBtn.click();
 }
-
-randomWord();
