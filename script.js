@@ -24,7 +24,7 @@ let stageImg = [
 ];
 
 alphabet.forEach((a) => {
-  keyboardElement.innerHTML += `<button type="button" class="col btn btn-outline-dark btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
+  keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
 });
 
 function randomWord() {

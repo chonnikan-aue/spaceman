@@ -1,14 +1,31 @@
 body {
   padding: 10px;
+  background-image: url(img/earth.jpg);
+  background-size: cover;
 }
 .spaceship > img{
-  max-width: 450px;
+  max-width: 430px;
 }
 
 .row {
   margin: 30px;
+  margin-bottom: 0;
 }
 
 .col {
   margin: 10px;
+}
+
+.keyboard > button {
+    max-width: 85px;
+    margin: 5px;
+}
+
+.keyboard > button:disabled {
+    background-color: black;
+    border-color: black;
+}
+
+.word {
+    margin: 0 auto;
 }
