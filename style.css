@@ -1,3 +1,8 @@
+* {
+    --bs-nav-link-color: #dc3545;
+    --bs-nav-link-hover-color: #bb2d3b;
+}
+
 body {
   padding: 10px;
   background-image: url(img/earth.jpg);
