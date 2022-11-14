@@ -1,14 +1,15 @@
 * {
-    --bs-nav-link-color: #dc3545;
-    --bs-nav-link-hover-color: #bb2d3b;
+  --bs-nav-link-color: #dc3545;
+  --bs-nav-link-hover-color: #bb2d3b;
 }
 
 body {
   padding: 10px;
   background-image: url(img/earth.jpg);
+  background-repeat: no-repeat;
   background-size: cover;
 }
-.spaceship > img{
+#rocket {
   max-width: 430px;
 }
 
@@ -22,15 +23,29 @@ body {
 }
 
 .keyboard > button {
-    max-width: 85px;
-    margin: 5px;
+  max-width: 85px;
+  margin: 5px;
 }
 
 .keyboard > button:disabled {
-    background-color: black;
-    border-color: black;
+  background-color: black;
+  border-color: black;
 }
 
 .word {
-    margin: 0 auto;
+  margin: 0 auto;
+}
+
+@keyframes rocket {
+  0% {
+    opacity: 100;
+  }
+  20% {
+    opacity: 100;
+    transform: translate(120px, 50%);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translate(-100%, -100%);
+  }
 }

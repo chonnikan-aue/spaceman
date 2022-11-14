@@ -28,6 +28,7 @@ let askNameModalTitleElement = document.querySelector("#askNameModalTitle");
 let askNameModalBtn = document.querySelector("#askNameModalBtn");
 let askNameModalWordElement = document.querySelector("#askNameModalWord");
 let askNameModalScoreElement = document.querySelector("#askNameModalScore");
+let rocketImgElement = document.querySelector("#rocket");
 
 alphabet.forEach((a) => {
   keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
@@ -70,11 +71,17 @@ function chooseAlphabet(id) {
       }
     }, 0);
   } else {
-    let spaceshipElement = document.querySelector(".spaceship > img");
-    spaceshipElement.src = `img/spaceship-${stageImg.shift()}.png`;
+    rocketImgElement.src = `img/spaceship-${stageImg.shift()}.png`;
     score -= 5;
     if (stageImg.length === 0) {
-      modifyModal("lose");
+      alphabet.forEach((a) => {
+        document.querySelector(`#${a}`).disabled = true;
+      });
+      document.body.style.backgroundImage = "url(img/space.gif)";
+      rocketImgElement.style.animation = "rocket 5s";
+      setTimeout(() => {
+        modifyModal("lose");
+      }, 5500);
     }
   }
   alphabetElement.disabled = true;
