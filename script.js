@@ -12,6 +12,7 @@ let vocab = [
 ];
 let chosenWord = "";
 let guessWord = [];
+let word = "";
 let stageImg = [
   "body",
   "head",
@@ -22,6 +23,11 @@ let stageImg = [
   "nozzle",
   "fire",
 ];
+let score = 0;
+let askNameModalTitleElement = document.querySelector("#askNameModalTitle");
+let askNameModalBtn = document.querySelector("#askNameModalBtn");
+let askNameModalWordElement = document.querySelector("#askNameModalWord");
+let askNameModalScoreElement = document.querySelector("#askNameModalScore");
 
 alphabet.forEach((a) => {
   keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
@@ -30,6 +36,7 @@ alphabet.forEach((a) => {
 function randomWord() {
   let randomNum = Math.floor(Math.random() * vocab.length);
   chosenWord = vocab[randomNum];
+  word = chosenWord.toUpperCase();
   console.log(chosenWord);
   guessWord = Array(chosenWord.length).fill("_");
   console.log(guessWord);
@@ -54,14 +61,35 @@ function chooseAlphabet(id) {
       guessWord[indexOfChosenWord] = alphabetElement.innerText;
       changeDisplayWord();
       chosenWord = chosenWord.replace(chosenAlphabet, "_");
+      score += 10;
       indexOfChosenWord = chosenWord.indexOf(chosenAlphabet);
     }
+    setTimeout(() => {
+      if (guessWord.join("").indexOf("_") === -1) {
+        modifyModal("win");
+      }
+    }, 0);
   } else {
     let spaceshipElement = document.querySelector(".spaceship > img");
     spaceshipElement.src = `img/spaceship-${stageImg.shift()}.png`;
+    score -= 5;
+    if (stageImg.length === 0) {
+      modifyModal("lose");
+    }
   }
   alphabetElement.disabled = true;
   console.log(guessWord);
+}
+
+function modifyModal(str) {
+  if (str === "win") {
+    askNameModalTitleElement.innerText = "Congratulation!";
+  } else {
+    askNameModalTitleElement.innerText = "You released the rocket!";
+  }
+  askNameModalWordElement.innerHTML = `Your word is <mark>${word}</mark>`;
+  askNameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
+  askNameModalBtn.click();
 }
 
 randomWord();
