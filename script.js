@@ -124,11 +124,11 @@ function chooseAlphabet(id) {
       }
     }, 0);
   } else {
-    rocketImgElement.src = `img/spaceship-${stageImg.shift()}.png`;
+    rocketImgElement.src = `img/spaceship/${stageImg.shift()}.png`;
     score -= 5;
     if (stageImg.length === 0) {
       setKeyboardDisable(true);
-      document.body.style.backgroundImage = "url(img/space.gif)";
+      document.body.style.backgroundImage = "url(img/bg/space.gif)";
       rocketImgElement.style.animation = "rocket 5s";
       setTimeout(() => {
         modifyModal("lose");
