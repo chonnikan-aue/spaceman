@@ -11,3 +11,13 @@ body {
 .row {
   margin-bottom: 50px;
 }
+
+#table {
+  overflow: auto;
+  max-height: 451px;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+}
