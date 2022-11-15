@@ -30,10 +30,10 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
     <div class="container text-center">
-      <div class="row float-end">
+      <div class="row">
         <nav class="nav">
-          <a class="nav-link" href="scoreboard.html"
-            ><h1><i class="bi bi-trophy-fill"></i></h1
+          <a class="nav-link" onclick="goBack()"
+            ><h1><i class="bi bi-arrow-left-circle"></i></h1
           ></a>
         </nav>
       </div>
@@ -46,7 +46,7 @@
       <div class="row keyboard"></div>
     </div>
 
-    <!-- Button trigger modal -->
+    <!-- modal for ask name -->
     <button
       type="button"
       id="askNameModalBtn"
@@ -55,7 +55,6 @@
       data-bs-target="#askNameModal"
     ></button>
 
-    <!-- Modal -->
     <div
       class="modal fade"
       id="askNameModal"
@@ -87,6 +86,48 @@
             </button>
             <button type="button" class="btn btn-primary" onclick="submit()">
               Yeah!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal for go back -->
+    <button
+      type="button"
+      id="goBackModalBtn"
+      class="btn"
+      data-bs-toggle="modal"
+      data-bs-target="#goBackModal"
+    ></button>
+
+    <div
+      class="modal fade"
+      id="goBackModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 id="goBackModalTitle" class="modal-title fs-5">
+              We sad to see you go...
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <red>** This will not save your game progress **</red>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" onclick="window.location.href = 'index.html'">
+              Yes, I want to go.
             </button>
           </div>
         </div>

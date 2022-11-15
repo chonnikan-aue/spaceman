@@ -30,6 +30,7 @@ let askNameModalBtn = document.querySelector("#askNameModalBtn");
 let askNameModalWordElement = document.querySelector("#askNameModalWord");
 let askNameModalScoreElement = document.querySelector("#askNameModalScore");
 let rocketImgElement = document.querySelector("#rocket");
+let goBackModalBtn = document.querySelector("#goBackModalBtn");
 
 alphabet.forEach((a) => {
   keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
@@ -37,20 +38,20 @@ alphabet.forEach((a) => {
 
 startGame();
 
-axios({
-  method: "get",
-  url: "https://od-api.oxforddictionaries.com/api/v2/entries/en-us",
-  headers: {
-    app_key: "b77abc8eb3a260d74f3bc811bc15abe3",
-    app_id: "d839ec61",
-  },
-})
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// axios({
+//   method: "get",
+//   url: "https://wordsapiv1.p.mashape.com/words?random=true",
+// })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+function goBack() {
+  goBackModalBtn.click()
+}
 
 function startGame() {
   setKeyboardDisable(false);

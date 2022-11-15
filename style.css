@@ -49,3 +49,7 @@ body {
     transform: scale(0.5) translate(-100%, -100%);
   }
 }
+
+red {
+  color: #bb2d3b;
+}
