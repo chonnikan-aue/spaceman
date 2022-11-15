@@ -3,6 +3,10 @@
   --bs-nav-link-hover-color: #bb2d3b;
 }
 
+body {
+  padding: 10px;
+}
+
 red {
   color: #bb2d3b;
 }
