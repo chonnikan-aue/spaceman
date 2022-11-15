@@ -37,6 +37,21 @@ alphabet.forEach((a) => {
 
 startGame();
 
+axios({
+  method: "get",
+  url: "https://od-api.oxforddictionaries.com/api/v2/entries/en-us",
+  headers: {
+    app_key: "b77abc8eb3a260d74f3bc811bc15abe3",
+    app_id: "d839ec61",
+  },
+})
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 function startGame() {
   setKeyboardDisable(false);
   randomWord();
