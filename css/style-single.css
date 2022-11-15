@@ -37,6 +37,10 @@ body {
   margin: 0 auto;
 }
 
+.time {
+  margin-bottom: 30px;
+}
+
 @keyframes rocket {
   0% {
     opacity: 100;
