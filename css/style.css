@@ -5,6 +5,12 @@
 
 body {
   padding: 10px;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  width: 0;
 }
 
 red {
