@@ -8,13 +8,13 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="css/style.css"
+      href="/css/style.css"
       media="screen"
     />
     <link
       rel="stylesheet"
       type="text/css"
-      href="css/style-index.css"
+      href="/css/style-index.css"
       media="screen"
     />
     <!-- bootstrap css -->
@@ -41,17 +41,21 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
     <div class="container text-center">
-      <div class="row float-end">
+      <div class="float-end">
         <nav class="nav">
           <a class="nav-link" href="scoreboard.html"
             ><h1><i class="bi bi-trophy-fill"></i></h1
           ></a>
         </nav>
       </div>
-      <div class="row door">
-        <img src="/img/first-page/door-left.png" />
-        <img src="/img/first-page/door-right.png" />
-      </div>
+      <h1 id="game-title">Spaceman</h1>
+      <button
+        type="button"
+        class="btn btn-danger btn-lg"
+        onclick="window.location.href = 'single.html'"
+      >
+        Play!
+      </button>
     </div>
 
     <!-- Button trigger modal -->
@@ -102,6 +106,6 @@
     </div>
 
     <!-- external js -->
-    <script src="script.js"></script>
+    <script src="/js/script.js"></script>
   </body>
 </html>
