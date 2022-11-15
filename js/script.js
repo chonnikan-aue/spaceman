@@ -1,15 +1,5 @@
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let keyboardElement = document.querySelector(".keyboard");
-let vocab = [
-  "abandon",
-  "abandoned",
-  "ability",
-  "able",
-  "about",
-  "above",
-  "abroad",
-  "absence",
-];
 let chosenWord = "";
 let guessWord = [];
 let word = "";
@@ -39,17 +29,6 @@ if (link.indexOf("single") !== -1) {
   });
   startGame();
 }
-
-// axios({
-//   method: "get",
-//   url: "https://wordsapiv1.p.mashape.com/words?random=true",
-// })
-//   .then((res) => {
-//     console.log(res);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
 
 function goBack() {
   goBackModalBtn.click();
@@ -90,13 +69,21 @@ function setKeyboardDisable(bool) {
 }
 
 function randomWord() {
-  let randomNum = Math.floor(Math.random() * vocab.length);
-  chosenWord = vocab[randomNum];
-  word = chosenWord.toUpperCase();
-  console.log(chosenWord);
-  guessWord = Array(chosenWord.length).fill("_");
-  console.log(guessWord);
-  changeDisplayWord();
+  axios({
+    method: "get",
+    url: "https://random-word-api.herokuapp.com/word",
+  })
+    .then((res) => {
+      chosenWord = res.data[0];
+      word = chosenWord.toUpperCase();
+      console.log(chosenWord);
+      guessWord = Array(chosenWord.length).fill("_");
+      console.log(guessWord);
+      changeDisplayWord();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function changeDisplayWord() {
