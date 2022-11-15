@@ -13,6 +13,15 @@ let stageImg = [
   "nozzle",
   "fire",
 ];
+let colorBootstrap = [
+  "primary",
+  "secondary",
+  "success",
+  // "danger",
+  // "warning",
+  "info",
+  // "light",
+];
 let score = 0;
 let link = window.location.href;
 let askNameModalElement = document.querySelector("#askNameModal");
@@ -24,12 +33,28 @@ let rocketImgElement = document.querySelector("#rocket");
 let goBackModalBtn = document.querySelector("#goBackModalBtn");
 let labelPlayerNameElement = document.querySelector("label[for='playerName']");
 let playerNameElement = document.querySelector("#playerName");
+let bodyTableElement = document.querySelector("#bodyTable");
 
 if (link.indexOf("single") !== -1) {
   alphabet.forEach((a) => {
     keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
   });
   startGame();
+} else if (link.indexOf("scoreboard") !== -1) {
+  let localStorageSort = Object.keys(localStorage).sort(
+    (a, b) => localStorage[b] - localStorage[a]
+  );
+  localStorageSort.forEach((key, index) => {
+    let colorIndex = index;
+    if (index >= colorBootstrap.length) {
+      colorIndex = index % colorBootstrap.length;
+    }
+    bodyTableElement.innerHTML += `<tr class="table-${
+      colorBootstrap[colorIndex]
+    }"><th scope="row">${
+      index + 1
+    }</th><td>${key}</td><td>${localStorage.getItem(key)}</td></tr>`;
+  });
 }
 
 function goBack() {
@@ -123,7 +148,7 @@ function modifyModal(str) {
 
 function submit(str) {
   if (playerNameElement.value !== "") {
-    localStorage.setItem(playerName, score);
+    localStorage.setItem(playerName.value, score);
     document.querySelector("#playerName").value = "";
     if (str === "new game") {
       stageImg = [
@@ -152,5 +177,3 @@ function submit(str) {
     playerNameElement.style.borderColor = "#bb2d3b";
   }
 }
-
-console.log(localStorage);
