@@ -3,3 +3,16 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+#game-title {
+  color: white;
+  margin: 120px 0 50px 0;
+}
+
+.float-end {
+  padding: 30px 0 50px 0;
+}
+
+.row {
+  margin-bottom: 100px;
+}
