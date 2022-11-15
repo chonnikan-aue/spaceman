@@ -1,6 +1,17 @@
+@font-face {
+  font-family: "Rubik Bubbles";
+  src: url("/fonts/Rubik_Bubbles/RubikBubbles-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Share Tech Mono";
+  src: url("/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf") format("truetype");
+}
+
 * {
   --bs-nav-link-color: #dc3545;
   --bs-nav-link-hover-color: #bb2d3b;
+  font-family: "Share Tech Mono", monospace;
 }
 
 body {
@@ -15,4 +26,8 @@ body {
 
 red {
   color: #bb2d3b;
+}
+
+h1 {
+  font-family: "Rubik Bubbles", cursive;
 }
