@@ -60,53 +60,6 @@
       </div>
     </div>
 
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      id="askNameModalBtn"
-      class="btn"
-      data-bs-toggle="modal"
-      data-bs-target="#askNameModal"
-    ></button>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="askNameModal"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 id="askNameModalTitle" class="modal-title fs-5"></h1>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div id="askNameModalWord">Your word is Hiiii</div>
-              <div id="askNameModalScore">Score: 0</div>
-              <div class="mb-3">
-                <label for="player-name" class="col-form-label"
-                  >Enter your name:</label
-                >
-                <input type="text" class="form-control" id="player-name" />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" onclick="resetGame()">
-              New Game
-            </button>
-            <button type="button" class="btn btn-primary" onclick="submit()">
-              Yeah!
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- external js -->
     <script src="/js/script.js"></script>
   </body>
