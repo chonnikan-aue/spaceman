@@ -24,6 +24,7 @@ let stageImg = [
   "fire",
 ];
 let score = 0;
+let link = window.location.href;
 let askNameModalElement = document.querySelector("#askNameModal");
 let askNameModalTitleElement = document.querySelector("#askNameModalTitle");
 let askNameModalBtn = document.querySelector("#askNameModalBtn");
@@ -32,11 +33,12 @@ let askNameModalScoreElement = document.querySelector("#askNameModalScore");
 let rocketImgElement = document.querySelector("#rocket");
 let goBackModalBtn = document.querySelector("#goBackModalBtn");
 
-alphabet.forEach((a) => {
-  keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
-});
-
-startGame();
+if (link.indexOf("single") !== -1) {
+  alphabet.forEach((a) => {
+    keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
+  });
+  startGame();
+}
 
 // axios({
 //   method: "get",
@@ -50,7 +52,7 @@ startGame();
 //   });
 
 function goBack() {
-  goBackModalBtn.click()
+  goBackModalBtn.click();
 }
 
 function startGame() {
