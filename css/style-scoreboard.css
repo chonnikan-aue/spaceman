@@ -1,0 +1,13 @@
+body {
+  background-image: url(/img/bg/bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#game-title {
+  color: white;
+}
+
+.row {
+  margin-bottom: 50px;
+}
