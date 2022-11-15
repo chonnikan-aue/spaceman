@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spaceman</title>
     <!-- external css -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/css/style-single.css" media="screen" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/style.css"
+      media="screen"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/style-single.css"
+      media="screen"
+    />
     <!-- bootstrap css -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -74,15 +84,24 @@
               <div id="askNameModalWord">Your word is Hiiii</div>
               <div id="askNameModalScore">Score: 0</div>
               <div class="mb-3">
-                <label for="player-name" class="col-form-label"
-                  >Enter your name:</label
-                >
-                <input type="text" class="form-control" id="player-name" />
+                  <label for="player-name" class="col-form-label"
+                    >Enter your name:</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="playerName"
+                    required
+                  />
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" onclick="resetGame()">
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="submit('new game')"
+            >
               New Game
             </button>
             <button type="button" class="btn btn-primary" onclick="submit()">
@@ -127,7 +146,11 @@
             <red>** This will not save your game progress **</red>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" onclick="window.location.href = 'index.html'">
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="window.location.href = 'index.html'"
+            >
               Yes, I want to go.
             </button>
           </div>

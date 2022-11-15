@@ -39,24 +39,6 @@ function startGame() {
   randomWord();
 }
 
-function resetGame() {
-  stageImg = [
-    "body",
-    "head",
-    "window",
-    "wing1",
-    "wing2",
-    "wing3",
-    "nozzle",
-    "fire",
-  ];
-  score = 0;
-  document.body.style.backgroundImage = "url(img/bg/earth.jpg)";
-  rocketImgElement.style.animation = "";
-  hideModal();
-  startGame();
-}
-
 function hideModal() {
   let modal = bootstrap.Modal.getInstance(askNameModalElement);
   modal.hide();
@@ -78,7 +60,6 @@ function randomWord() {
       word = chosenWord.toUpperCase();
       console.log(chosenWord);
       guessWord = Array(chosenWord.length).fill("_");
-      console.log(guessWord);
       changeDisplayWord();
     })
     .catch((err) => {
@@ -117,7 +98,7 @@ function chooseAlphabet(id) {
     score -= 5;
     if (stageImg.length === 0) {
       setKeyboardDisable(true);
-      document.body.style.backgroundImage = "url(img/bg/space.gif)";
+      document.body.style.backgroundImage = "url(/img/bg/space.gif)";
       rocketImgElement.style.animation = "rocket 5s";
       setTimeout(() => {
         modifyModal("lose");
@@ -125,7 +106,6 @@ function chooseAlphabet(id) {
     }
   }
   alphabetElement.disabled = true;
-  console.log(guessWord);
 }
 
 function modifyModal(str) {
@@ -138,3 +118,33 @@ function modifyModal(str) {
   askNameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
   askNameModalBtn.click();
 }
+
+function submit(str) {
+  let playerName = document.querySelector("#playerName").value;
+  if (playerName !== "") {
+    localStorage.setItem(playerName, score);
+    document.querySelector("#playerName").value = "";
+    if (str === "new game") {
+      stageImg = [
+        "body",
+        "head",
+        "window",
+        "wing1",
+        "wing2",
+        "wing3",
+        "nozzle",
+        "fire",
+      ];
+      score = 0;
+      document.body.style.backgroundImage = "url(img/bg/earth.jpg)";
+      rocketImgElement.style.animation = "";
+      rocketImgElement.src = "/img/spaceship/none.png";
+      hideModal();
+      startGame();
+    } else {
+      window.location.href = "scoreboard.html";
+    }
+  }
+}
+
+console.log(localStorage);
