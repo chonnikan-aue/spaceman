@@ -13,15 +13,7 @@ let stageImg = [
   "nozzle",
   "fire",
 ];
-let colorBootstrap = [
-  "primary",
-  "secondary",
-  "success",
-  // "danger",
-  // "warning",
-  "info",
-  // "light",
-];
+let colorBootstrap = ["primary", "secondary", "success", "info"];
 let score = 0;
 let link = window.location.href;
 let askNameModalElement = document.querySelector("#askNameModal");
