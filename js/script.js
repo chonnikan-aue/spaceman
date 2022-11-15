@@ -1,4 +1,7 @@
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const minute1 = 4;
+const second1 = 60;
+const timeLeft1 = minute1 * 60000 + second1 * 1000;
 let keyboardElement = document.querySelector(".keyboard");
 let chosenWord = "";
 let guessWord = [];
@@ -15,6 +18,10 @@ let stageImg = [
 ];
 let colorBootstrap = ["primary", "secondary", "success", "info"];
 let score = 0;
+let minute = minute1;
+let second = second1;
+let timeLeft = timeLeft1;
+let timerInterval;
 let link = window.location.href;
 let askNameModalElement = document.querySelector("#askNameModal");
 let askNameModalTitleElement = document.querySelector("#askNameModalTitle");
@@ -26,11 +33,13 @@ let goBackModalBtn = document.querySelector("#goBackModalBtn");
 let labelPlayerNameElement = document.querySelector("label[for='playerName']");
 let playerNameElement = document.querySelector("#playerName");
 let bodyTableElement = document.querySelector("#bodyTable");
+let timeElement = document.querySelector(".time");
 
 if (link.indexOf("single") !== -1) {
   alphabet.forEach((a) => {
     keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
   });
+  timer();
   startGame();
 } else if (link.indexOf("scoreboard") !== -1) {
   let localStorageSort = Object.keys(localStorage).sort(
@@ -47,6 +56,43 @@ if (link.indexOf("single") !== -1) {
       index + 1
     }</th><td>${key}</td><td>${localStorage.getItem(key)}</td></tr>`;
   });
+}
+
+function timer() {
+  timerInterval = setInterval(() => {
+    let htmlStr = "";
+    timeLeft -= 1000;
+    if (timeLeft % 60000 === 0) {
+      second = 1;
+    }
+    second -= 1;
+    console.log(minute, second);
+    if (timeLeft === -1000) {
+      modifyModal("Time's up!");
+      clearInterval(timerInterval);
+    } else {
+      if (minute === 0) {
+        htmlStr = `<red><h1>Time Left: ${minute}:`;
+        if (second >= 10) {
+          htmlStr += `${second}</h1></red>`;
+        } else {
+          htmlStr += `0${second}</h1></red>`;
+        }
+      } else {
+        htmlStr = `<h1>Time Left: ${minute}:`;
+        if (second >= 10) {
+          htmlStr += `${second}</h1>`;
+        } else {
+          htmlStr += `0${second}</h1>`;
+        }
+      }
+      timeElement.innerHTML = htmlStr;
+      if (timeLeft % 60000 === 0) {
+        minute -= 1;
+        second = 60;
+      }
+    }
+  }, 1000);
 }
 
 function goBack() {
@@ -128,12 +174,16 @@ function chooseAlphabet(id) {
 }
 
 function modifyModal(str) {
+  setKeyboardDisable(true);
   if (str === "win") {
     askNameModalTitleElement.innerText = "Congratulation!";
-  } else {
+  } else if (str === "lose") {
     askNameModalTitleElement.innerText = "You released the rocket!";
+  } else {
+    askNameModalTitleElement.innerText = str;
   }
   askNameModalWordElement.innerHTML = `Your word is <mark>${word}</mark>`;
+  score += timeLeft;
   askNameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
   askNameModalBtn.click();
 }
@@ -154,6 +204,9 @@ function submit(str) {
         "fire",
       ];
       score = 0;
+      timeLeft = timeLeft1;
+      minute = minute1;
+      second = second1;
       document.body.style.backgroundImage = "url(img/bg/earth.jpg)";
       rocketImgElement.style.animation = "";
       rocketImgElement.src = "/img/spaceship/none.png";
