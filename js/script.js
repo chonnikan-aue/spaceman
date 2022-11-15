@@ -22,6 +22,8 @@ let askNameModalWordElement = document.querySelector("#askNameModalWord");
 let askNameModalScoreElement = document.querySelector("#askNameModalScore");
 let rocketImgElement = document.querySelector("#rocket");
 let goBackModalBtn = document.querySelector("#goBackModalBtn");
+let labelPlayerNameElement = document.querySelector("label[for='playerName']");
+let playerNameElement = document.querySelector("#playerName");
 
 if (link.indexOf("single") !== -1) {
   alphabet.forEach((a) => {
@@ -120,8 +122,7 @@ function modifyModal(str) {
 }
 
 function submit(str) {
-  let playerName = document.querySelector("#playerName").value;
-  if (playerName !== "") {
+  if (playerNameElement.value !== "") {
     localStorage.setItem(playerName, score);
     document.querySelector("#playerName").value = "";
     if (str === "new game") {
@@ -141,9 +142,14 @@ function submit(str) {
       rocketImgElement.src = "/img/spaceship/none.png";
       hideModal();
       startGame();
+      labelPlayerNameElement.innerHTML = "Enter your name:";
+      playerNameElement.style.borderColor = "#ced4da";
     } else {
       window.location.href = "scoreboard.html";
     }
+  } else {
+    labelPlayerNameElement.innerHTML = "Enter your name: <red>*required</red>";
+    playerNameElement.style.borderColor = "#bb2d3b";
   }
 }
 
