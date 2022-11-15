@@ -17,6 +17,12 @@ body {
   margin: 10px;
 }
 
+.keyboard {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  bottom: 0;
+}
+
 .keyboard > button {
   max-width: 85px;
   margin: 5px;
