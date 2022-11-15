@@ -70,7 +70,7 @@ function resetGame() {
     "fire",
   ];
   score = 0;
-  document.body.style.backgroundImage = "url(img/earth.jpg)";
+  document.body.style.backgroundImage = "url(img/bg/earth.jpg)";
   rocketImgElement.style.animation = "";
   hideModal();
   startGame();
