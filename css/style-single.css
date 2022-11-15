@@ -1,14 +1,10 @@
-* {
-  --bs-nav-link-color: #dc3545;
-  --bs-nav-link-hover-color: #bb2d3b;
-}
-
 body {
   padding: 10px;
-  background-image: url(img//bg/earth.jpg);
+  background-image: url(img/bg/earth.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 #rocket {
   max-width: 430px;
 }
@@ -48,8 +44,4 @@ body {
     opacity: 0;
     transform: scale(0.5) translate(-100%, -100%);
   }
-}
-
-red {
-  color: #bb2d3b;
 }

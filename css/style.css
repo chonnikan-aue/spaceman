@@ -1,0 +1,8 @@
+* {
+  --bs-nav-link-color: #dc3545;
+  --bs-nav-link-hover-color: #bb2d3b;
+}
+
+red {
+  color: #bb2d3b;
+}
