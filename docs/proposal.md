@@ -33,13 +33,14 @@ scoreboard page: when player click trophy icon from first page
 > Add user stories following the _As a [type of user], I want [what the user wants], so that [what it helps accomplish]_ format.
 
 - as a player, guess the word before spaceship completely drawn.
-- have 8 spaceship part = 8 guesses (body, head, window, wing 1, wing 2, wing 3, nozzle, fire)
+- have 8 spaceship part = 8 wrong guesses (body, head, window, wing 1, wing 2, wing 3, nozzle, fire)
+- have keyboard in UI to select guessed alphabet.
 - alphabet button cannot click when already guessed
 
 ### MVP Goals
 
 - have initial time (5 minutes)
-- in single mode, program will random word from vocabulary (maybe manual vocab or oxford dic api)
+- in single mode, program will random word from random word api
 - have scoreboard for single mode, player can type their name
 - score will calculate from (time left(second) + length of word that guess correct)
 
@@ -53,7 +54,7 @@ first prior
 
 second prior
 - have single mode and multiplayer mode
-- in multiplayer mode, first player will think of a word and type in program then player two will guess the word by select an alphabet from button in UI
+- in multiplayer mode, it will have two seperate window for each player. In the first player's window, the second player will think of a word for first player to guess and vice versa.
 - in multiplayer mode will ask player's name before play the game
 - have scoreboard for multiplayer mode, only show who wins (e.g, A wins B)
 
