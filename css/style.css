@@ -5,7 +5,8 @@
 
 @font-face {
   font-family: "Share Tech Mono";
-  src: url("/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf") format("truetype");
+  src: url("/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf")
+    format("truetype");
 }
 
 * {
