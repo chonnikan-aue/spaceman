@@ -21,7 +21,7 @@ for (let i = 0; i <= playerCount; i++) {
   ]);
 }
 let colorBootstrap = ["primary", "secondary", "success", "info"];
-let score = 0;
+let score = [];
 let minute = minute1;
 let second = second1;
 let timeLeft = timeLeft1;
@@ -31,7 +31,6 @@ let askNameModalTitleElement = document.querySelector("#askNameModalTitle");
 let askNameModalBtn = document.querySelector("#askNameModalBtn");
 let askNameModalWordElement = document.querySelector("#askNameModalWord");
 let askNameModalScoreElement = document.querySelector("#askNameModalScore");
-let rocketImgElement = document.querySelector("#rocket");
 let labelPlayerNameElement = document.querySelector("label[for='playerName']");
 let playerNameElement = document.querySelector("#playerName");
 let bodyTableElement = document.querySelector("#bodyTable");
@@ -135,7 +134,7 @@ function addGameWindow() {
             <div class="row word"></div>
           </div>
           <div class="col spaceship">
-            <img id="rocket" src="img/spaceship/none.png" alt="spaceship" />
+            <img id="rocket${i}" src="img/spaceship/none.png" alt="spaceship" />
           </div>
         </div>
         <div class="row keyboard"></div>
@@ -234,6 +233,7 @@ function randomWord() {
       .catch((err) => {
         console.log(err);
       });
+      score.push(0)
   }
 }
 
@@ -247,26 +247,28 @@ function changeDisplayWord(i) {
 }
 
 function chooseAlphabet(id) {
+  let i = id.split("")[1];
   let alphabetElement = document.querySelector(`#${id}`);
   let chosenAlphabet = alphabetElement.innerText.toLowerCase();
-  let indexOfwordLowerCase = wordLowerCase.indexOf(chosenAlphabet);
-  if (indexOfwordLowerCase !== -1) {
-    while (indexOfwordLowerCase !== -1) {
-      guessWord[indexOfwordLowerCase] = alphabetElement.innerText;
-      changeDisplayWord();
-      wordLowerCase = wordLowerCase.replace(chosenAlphabet, "_");
-      score += 10;
-      indexOfwordLowerCase = wordLowerCase.indexOf(chosenAlphabet);
+  let indexOfWordLowerCase = wordLowerCase[i].indexOf(chosenAlphabet);
+  if (indexOfWordLowerCase !== -1) {
+    while (indexOfWordLowerCase !== -1) {
+      guessWord[i][indexOfWordLowerCase] = alphabetElement.innerText;
+      changeDisplayWord(i);
+      wordLowerCase[i] = wordLowerCase[i].replace(chosenAlphabet, "_");
+      score[i] += 500;
+      indexOfWordLowerCase = wordLowerCase[i].indexOf(chosenAlphabet);
     }
     setTimeout(() => {
-      if (guessWord.join("").indexOf("_") === -1) {
+      if (guessWord[i].join("").indexOf("_") === -1) {
         modifyModal("win");
       }
     }, 0);
   } else {
-    rocketImgElement.src = `img/spaceship/${stageImg.shift()}.png`;
-    score -= 5;
-    if (stageImg.length === 0) {
+    let rocketImgElement = document.querySelector(`#rocket${i}`);
+    rocketImgElement.src = `img/spaceship/${stageImg[i].shift()}.png`;
+    score[i] -= 250;
+    if (stageImg[i].length === 0) {
       setKeyboardDisable(true);
       document.body.style.backgroundImage = "url(/img/bg/space.gif)";
       rocketImgElement.style.animation = "rocket 5s";
@@ -288,7 +290,9 @@ function modifyModal(str) {
     askNameModalTitleElement.innerText = str;
   }
   askNameModalWordElement.innerHTML = `Your word is <mark>${wordUpperCase}</mark>`;
-  score += timeLeft;
+  for (let i = 0; i<=playerCount; i++){
+    score[i] += timeLeft;
+  }
   askNameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
   askNameModalBtn.click();
 }
@@ -302,7 +306,7 @@ function submit(str) {
         ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
         ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
       ];
-      score = 0;
+      score = [];
       timeLeft = timeLeft1;
       minute = minute1;
       second = second1;
