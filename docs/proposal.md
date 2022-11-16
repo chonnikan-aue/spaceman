@@ -52,9 +52,9 @@ scoreboard page: when player click trophy icon from first page
 > first prior
 
 - have single mode and multiplayer mode
-- in multiplayer mode, it will have two seperate window for each player. In the first player's window, the second player will think of a word for first player to guess and vice versa.
-- in multiplayer mode will ask player's name before play the game
-- have scoreboard for multiplayer mode, only show who wins (e.g, A wins B)
+- in multiplayer mode, each player have separate word and game window to play but in the same timer
+- player type their name before play the game
+- have scoreboard for multiplayer mode
 
 > second prior
 
