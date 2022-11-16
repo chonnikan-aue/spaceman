@@ -29,38 +29,38 @@ let timeLeft = timeLeft1;
 let timerInterval;
 let bodyTableElement = document.querySelector("#bodyTable");
 
-function toggleMultiplayerModeDropdown(){
-  let multiplayerElement = document.querySelectorAll(".multiplayer") ;
-  multiplayerElement.forEach(e => {
+function toggleMultiplayerModeDropdown() {
+  let multiplayerElement = document.querySelectorAll(".multiplayer");
+  multiplayerElement.forEach((e) => {
     e.classList.toggle("dropdown-hide");
-  })
+  });
 }
 
 function showAskNameModal() {
   let htmlStr = `<button
-      type="button"
-      id="askNameModalBtn"
-      class="btn"
-      data-bs-toggle="modal"
-      data-bs-target="#askNameModal"
-    ></button>
+                  type="button"
+                  id="askNameModalBtn"
+                  class="btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#askNameModal"
+                ></button>
 
-    <div
-      class="modal fade"
-      id="askNameModal"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 id="askNameModalTitle" class="modal-title fs-5">
-              Enter your name
-            </h1>
-          </div>
-          <div class="modal-body">`;
+                <div
+                  class="modal fade"
+                  id="askNameModal"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 id="askNameModalTitle" class="modal-title fs-5">
+                          Enter your name
+                        </h1>
+                      </div>
+                      <div class="modal-body">`;
   for (let i = 0; i <= playerCount; i++) {
     htmlStr += `<div class="mb-3">
                   <label for="playerName${i}" class="col-form-label">Player ${
