@@ -1,7 +1,6 @@
 body {
-  background-image: url(/img/bg/earth.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: linear-gradient(to top right, rgb(17, 64, 151), rgb(248, 172, 199));
+  background-repeat: repeat;
 }
 
 #rocket {
