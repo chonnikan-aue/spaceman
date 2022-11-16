@@ -1,0 +1,4 @@
+addGameWindow();
+addGoBackModal();
+addKeyboard();
+startGame();
