@@ -60,12 +60,28 @@
         <button
           type="button"
           class="btn btn-danger btn-lg"
+          onclick="toggleMultiplayerModeDropdown()"
+        >
+        Multiplayer Mode ▼
+        </button>
+        <button
+          class="btn btn-danger btn-lg multiplayer dropdown-hide"
           onclick="window.location.href = 'game.html?player=2'"
         >
-          Two Player Mode
+          Two Player
         </button>
-      </div>
-    </div>
+        <button
+          class="btn btn-danger btn-lg multiplayer dropdown-hide"
+          onclick="window.location.href = 'game.html?player=3'"
+        >
+          Three Player
+        </button>
+        <button
+          class="btn btn-danger btn-lg multiplayer dropdown-hide"
+          onclick="window.location.href = 'game.html?player=4'"
+        >
+          Four Player
+        </button>
 
     <!-- external js -->
     <script src="/js/script.js"></script>

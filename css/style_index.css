@@ -20,3 +20,7 @@ body {
 .btn {
   margin: 20px;
 }
+
+.dropdown-hide {
+  display: none !important;
+}

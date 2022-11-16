@@ -29,6 +29,13 @@ let timeLeft = timeLeft1;
 let timerInterval;
 let bodyTableElement = document.querySelector("#bodyTable");
 
+function toggleMultiplayerModeDropdown(){
+  let multiplayerElement = document.querySelectorAll(".multiplayer") ;
+  multiplayerElement.forEach(e => {
+    e.classList.toggle("dropdown-hide");
+  })
+}
+
 function showAskNameModal() {
   let htmlStr = `<button
       type="button"
