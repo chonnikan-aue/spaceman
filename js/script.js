@@ -323,7 +323,6 @@ function chooseAlphabet(id) {
     }, 0);
   } else {
     let rocketImgElement = document.querySelector(`#rocket${i}`);
-    console.log(stageImg);
     rocketImgElement.src = `img/spaceship/${stageImg[i].shift()}.png`;
     score[i] -= 1000;
     if (stageImg[i].length === 0) {
@@ -393,7 +392,6 @@ function showFinishGameModal(str) {
 
 function submitScore(str) {
   localStorage.setItem(playerName, score);
-  console.log(localStorage);
   if (str === "new game") {
     playerName = [];
     stageImg = [];
