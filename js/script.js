@@ -22,20 +22,24 @@ for (let i = 0; i <= playerCount; i++) {
 }
 let colorBootstrap = ["primary", "secondary", "success", "info"];
 let score = [];
+let playerName = [];
 let minute = minute1;
 let second = second1;
 let timeLeft = timeLeft1;
 let timerInterval;
-let askNameModalElement = document.querySelector("#askNameModal");
-let askNameModalTitleElement = document.querySelector("#askNameModalTitle");
-let askNameModalBtn = document.querySelector("#askNameModalBtn");
-let askNameModalWordElement = document.querySelector("#askNameModalWord");
-let askNameModalScoreElement = document.querySelector("#askNameModalScore");
-let labelPlayerNameElement = document.querySelector("label[for='playerName']");
-let playerNameElement = document.querySelector("#playerName");
+let finishGameModalElement = document.querySelector("#finishGameModal");
+let finishGameModalTitleElement = document.querySelector(
+  "#finishGameModalTitle"
+);
+let finishGameModalBtn = document.querySelector("#finishGameModalBtn");
+let finishGameModalWordElement = document.querySelector("#finishGameModalWord");
+let finishGameModalScoreElement = document.querySelector(
+  "#finishGameModalScore"
+);
 let bodyTableElement = document.querySelector("#bodyTable");
 
 if (link.indexOf("game") !== -1) {
+  addAskNameModal();
   addGameWindow();
   addGoBackModal();
   addKeyboard();
@@ -65,6 +69,81 @@ if (link.indexOf("game") !== -1) {
       index + 1
     }</th><td>${key}</td><td>${localStorage.getItem(key)}</td></tr>`;
   });
+}
+
+function addAskNameModal() {
+  let htmlStr = `<button
+      type="button"
+      id="askNameModalBtn"
+      class="btn btn-danger"
+      data-bs-toggle="modal"
+      data-bs-target="#askNameModal"
+    ></button>
+
+    <div
+      class="modal fade"
+      id="askNameModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 id="askNameModalTitle" class="modal-title fs-5">
+              Enter your name
+            </h1>
+          </div>
+          <div class="modal-body">`;
+  for (let i = 0; i <= playerCount; i++) {
+    htmlStr += `<div class="mb-3">
+                  <label for="playerName${i}" class="col-form-label">Player ${
+      i + 1
+    }:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="playerName${i}"
+                    required
+                  />
+                </div>`;
+  }
+  htmlStr += `</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="submitName()">
+                  Let's start!
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+  document.body.insertAdjacentHTML("afterbegin", htmlStr);
+  document.querySelector("#askNameModalBtn").click();
+}
+
+function submitName() {
+  let check = true;
+  for (let i = 0; i <= playerCount; i++) {
+    let playerNameValue = document.querySelector(`#playerName${i}`).value;
+    if (playerNameValue === "") {
+      let labelPlayerNameElement = document.querySelector(
+        `label[for="playerName${i}"]`
+      );
+      let playerNameElement = document.querySelector(`#playerName${i}`);
+      labelPlayerNameElement.innerHTML = `Player ${
+        i + 1
+      }: <red>*required</red>`;
+      playerNameElement.style.borderColor = "#bb2d3b";
+      check = false;
+    }
+  }
+  if (check) {
+    for (let i = 0; i <= playerCount; i++) {
+      let playerNameValue = document.querySelector(`#playerName${i}`).value;
+      playerName.push(playerNameValue);
+    }
+  }
 }
 
 function addGoBackModal() {
@@ -203,7 +282,7 @@ function startGame() {
 }
 
 function hideModal() {
-  let modal = bootstrap.Modal.getInstance(askNameModalElement);
+  let modal = bootstrap.Modal.getInstance(finishGameModalElement);
   modal.hide();
 }
 
@@ -284,18 +363,18 @@ function modifyModal(str) {
   clearInterval(timerInterval);
   setKeyboardDisable(true);
   if (str === "win") {
-    askNameModalTitleElement.innerText = "Congratulation!";
+    finishGameModalTitleElement.innerText = "Congratulation!";
   } else if (str === "lose") {
-    askNameModalTitleElement.innerText = "You released the rocket!";
+    finishGameModalTitleElement.innerText = "You released the rocket!";
   } else {
-    askNameModalTitleElement.innerText = str;
+    finishGameModalTitleElement.innerText = str;
   }
-  askNameModalWordElement.innerHTML = `Your word is <mark>${wordUpperCase}</mark>`;
+  finishGameModalWordElement.innerHTML = `Your word is <mark>${wordUpperCase}</mark>`;
   for (let i = 0; i <= playerCount; i++) {
     score[i] += timeLeft;
   }
-  askNameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
-  askNameModalBtn.click();
+  finishGameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
+  finishGameModalBtn.click();
 }
 
 function submit(str) {
@@ -329,8 +408,5 @@ function submit(str) {
     } else {
       window.location.href = "scoreboard.html";
     }
-  } else {
-    labelPlayerNameElement.innerHTML = "Enter your name: <red>*required</red>";
-    playerNameElement.style.borderColor = "#bb2d3b";
   }
 }
