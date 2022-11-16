@@ -233,7 +233,7 @@ function randomWord() {
       .catch((err) => {
         console.log(err);
       });
-      score.push(0)
+    score.push(0);
   }
 }
 
@@ -290,7 +290,7 @@ function modifyModal(str) {
     askNameModalTitleElement.innerText = str;
   }
   askNameModalWordElement.innerHTML = `Your word is <mark>${wordUpperCase}</mark>`;
-  for (let i = 0; i<=playerCount; i++){
+  for (let i = 0; i <= playerCount; i++) {
     score[i] += timeLeft;
   }
   askNameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
@@ -302,10 +302,18 @@ function submit(str) {
     localStorage.setItem(playerName.value, score);
     document.querySelector("#playerName").value = "";
     if (str === "new game") {
-      stageImg = [
-        ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
-        ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
-      ];
+      for (let i = 0; i <= playerCount; i++) {
+        stageImg.push([
+          "body",
+          "head",
+          "window",
+          "wing1",
+          "wing2",
+          "wing3",
+          "nozzle",
+          "fire",
+        ]);
+      }
       score = [];
       timeLeft = timeLeft1;
       minute = minute1;
