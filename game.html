@@ -38,62 +38,7 @@
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
-  <body>
-    <!-- modal for ask name -->
-    <button
-      type="button"
-      id="finishGameModalBtn"
-      class="btn"
-      data-bs-toggle="modal"
-      data-bs-target="#finishGameModal"
-    ></button>
-
-    <div
-      class="modal fade"
-      id="finishGameModal"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 id="finishGameModalTitle" class="modal-title fs-5"></h1>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div id="finishGameModalWord">Your word is</div>
-              <div id="finishGameModalScore">Score: 0</div>
-              <div class="mb-3">
-                <label for="playerName" class="col-form-label"
-                  >Enter your name:</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="playerName"
-                  required
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-danger"
-              onclick="submit('new game')"
-            >
-              New Game
-            </button>
-            <button type="button" class="btn btn-primary" onclick="submit()">
-              Yeah!
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <body>  
     <!-- external js -->
     <script src="/js/script.js"></script>
   </body>

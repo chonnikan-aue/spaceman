@@ -28,14 +28,6 @@ let second = second1;
 let timeLeft = timeLeft1;
 let timerInterval;
 let finishGameModalElement = document.querySelector("#finishGameModal");
-let finishGameModalTitleElement = document.querySelector(
-  "#finishGameModalTitle"
-);
-let finishGameModalBtn = document.querySelector("#finishGameModalBtn");
-let finishGameModalWordElement = document.querySelector("#finishGameModalWord");
-let finishGameModalScoreElement = document.querySelector(
-  "#finishGameModalScore"
-);
 let bodyTableElement = document.querySelector("#bodyTable");
 
 if (link.indexOf("game") !== -1) {
@@ -145,7 +137,7 @@ function submitName() {
     let askNameModalElement = document.querySelector("#askNameModal");
     let modal = bootstrap.Modal.getInstance(askNameModalElement);
     modal.hide();
-    timer()
+    timer();
   }
 }
 
@@ -248,7 +240,7 @@ function timer() {
     }
     second -= 1;
     if (timeLeft === -1000) {
-      modifyModal("Time's up!");
+      showFinishGameModal("Time's up!");
     } else {
       if (minute === 0) {
         htmlStr = `<red><h1>Time Left: ${minute}:`;
@@ -342,7 +334,7 @@ function chooseAlphabet(id) {
     }
     setTimeout(() => {
       if (guessWord[i].join("").indexOf("_") === -1) {
-        modifyModal("win");
+        showFinishGameModal("Congratulation!");
       }
     }, 0);
   } else {
@@ -355,32 +347,66 @@ function chooseAlphabet(id) {
       document.body.style.backgroundImage = "url(/img/bg/space.gif)";
       rocketImgElement.style.animation = "rocket 5s";
       setTimeout(() => {
-        modifyModal("lose");
+        showFinishGameModal("You released the rocket!");
       }, 5500);
     }
   }
   alphabetElement.disabled = true;
 }
 
-function modifyModal(str) {
+function showFinishGameModal(str) {
   clearInterval(timerInterval);
   setKeyboardDisable(true);
-  if (str === "win") {
-    finishGameModalTitleElement.innerText = "Congratulation!";
-  } else if (str === "lose") {
-    finishGameModalTitleElement.innerText = "You released the rocket!";
-  } else {
-    finishGameModalTitleElement.innerText = str;
-  }
-  finishGameModalWordElement.innerHTML = `Your word is <mark>${wordUpperCase}</mark>`;
+  let htmlStr = `<button
+                  type="button"
+                  id="finishGameModalBtn"
+                  class="btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#finishGameModal"
+                ></button>
+                <div
+                  class="modal fade"
+                  id="finishGameModal"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5">${str}</h1>
+                      </div>
+                      <div class="modal-body">`;
   for (let i = 0; i <= playerCount; i++) {
     score[i] += timeLeft;
+    htmlStr += `<div>Player ${i + 1}:</div>
+                <div>&emsp;&emsp;Your word: <mark>${
+                  wordUpperCase[i]
+                }</mark></div>
+                <div>&emsp;&emsp;Your score: <mark>${score[i]}</mark></div>`;
   }
-  finishGameModalScoreElement.innerHTML = `Score: <mark>${score}</mark>`;
-  finishGameModalBtn.click();
+  htmlStr += `</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  onclick="submitScore('new game')"
+                >
+                  New Game
+                </button>
+                <button type="button" class="btn btn-primary" onclick="submitScore()">
+                  Yeah!
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+  document.body.insertAdjacentHTML("afterbegin", htmlStr);
+  document.querySelector("#finishGameModalBtn").click();
 }
 
-function submit(str) {
+function submitScore(str) {
   if (playerNameElement.value !== "") {
     localStorage.setItem(playerName.value, score);
     document.querySelector("#playerName").value = "";
