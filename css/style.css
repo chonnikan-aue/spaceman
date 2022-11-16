@@ -1,13 +1,4 @@
-@font-face {
-  font-family: "Rubik Bubbles";
-  src: url("/fonts/Rubik_Bubbles/RubikBubbles-Regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Share Tech Mono";
-  src: url("/fonts/Share_Tech_Mono/ShareTechMono-Regular.ttf")
-    format("truetype");
-}
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Share+Tech+Mono&display=swap');
 
 * {
   --bs-nav-link-color: #dc3545;
