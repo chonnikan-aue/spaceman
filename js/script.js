@@ -27,7 +27,6 @@ let minute = minute1;
 let second = second1;
 let timeLeft = timeLeft1;
 let timerInterval;
-let finishGameModalElement = document.querySelector("#finishGameModal");
 let bodyTableElement = document.querySelector("#bodyTable");
 
 if (link.indexOf("game") !== -1) {
@@ -35,16 +34,6 @@ if (link.indexOf("game") !== -1) {
   addGoBackModal();
   addKeyboard();
   startGame();
-  addAskNameModal();
-} else if (link.indexOf("single") !== -1) {
-  addGoBackModal();
-  addKeyboard();
-  timer();
-  startGame();
-} else if (link.indexOf("twoplayer") !== -1) {
-  playerCount = 1;
-  addKeyboard();
-  addGoBackModal();
 } else if (link.indexOf("scoreboard") !== -1) {
   let localStorageSort = Object.keys(localStorage).sort(
     (a, b) => localStorage[b] - localStorage[a]
@@ -62,7 +51,7 @@ if (link.indexOf("game") !== -1) {
   });
 }
 
-function addAskNameModal() {
+function showAskNameModal() {
   let htmlStr = `<button
       type="button"
       id="askNameModalBtn"
@@ -274,11 +263,7 @@ function goBack() {
 function startGame() {
   setKeyboardDisable(false);
   randomWord();
-}
-
-function hideModal() {
-  let modal = bootstrap.Modal.getInstance(finishGameModalElement);
-  modal.hide();
+  showAskNameModal();
 }
 
 function setKeyboardDisable(bool) {
@@ -300,7 +285,6 @@ function randomWord() {
         wordLowerCase.push(word);
         wordUpperCase.push(word.toUpperCase());
         guessWord.push(Array(word.length).fill("_"));
-        console.log(guessWord);
         changeDisplayWord(i);
       })
       .catch((err) => {
@@ -339,6 +323,7 @@ function chooseAlphabet(id) {
     }, 0);
   } else {
     let rocketImgElement = document.querySelector(`#rocket${i}`);
+    console.log(stageImg);
     rocketImgElement.src = `img/spaceship/${stageImg[i].shift()}.png`;
     score[i] -= 1000;
     if (stageImg[i].length === 0) {
@@ -407,35 +392,42 @@ function showFinishGameModal(str) {
 }
 
 function submitScore(str) {
-  if (playerNameElement.value !== "") {
-    localStorage.setItem(playerName.value, score);
-    document.querySelector("#playerName").value = "";
-    if (str === "new game") {
-      for (let i = 0; i <= playerCount; i++) {
-        stageImg.push([
-          "body",
-          "head",
-          "window",
-          "wing1",
-          "wing2",
-          "wing3",
-          "nozzle",
-          "fire",
-        ]);
-      }
-      score = [];
-      timeLeft = timeLeft1;
-      minute = minute1;
-      second = second1;
-      document.body.style.backgroundImage = "url(img/bg/earth.jpg)";
+  localStorage.setItem(playerName, score);
+  console.log(localStorage);
+  if (str === "new game") {
+    playerName = [];
+    stageImg = [];
+    for (let i = 0; i <= playerCount; i++) {
+      stageImg.push([
+        "body",
+        "head",
+        "window",
+        "wing1",
+        "wing2",
+        "wing3",
+        "nozzle",
+        "fire",
+      ]);
+      let rocketImgElement = document.querySelector(`#rocket${i}`);
       rocketImgElement.style.animation = "";
       rocketImgElement.src = "/img/spaceship/none.png";
-      hideModal();
-      startGame();
-      labelPlayerNameElement.innerHTML = "Enter your name:";
-      playerNameElement.style.borderColor = "#ced4da";
-    } else {
-      window.location.href = "scoreboard.html";
     }
+    wordLowerCase = [];
+    guessWord = [];
+    wordUpperCase = [];
+    score = [];
+    timeLeft = timeLeft1;
+    minute = minute1;
+    second = second1;
+    let timeElement = document.querySelector(".time");
+    timeElement.innerHTML = "<h1>Time Left: 5:00</h1>";
+    document.body.style.backgroundImage =
+      "linear-gradient(to top right, rgb(17, 64, 151), rgb(248, 172, 199))";
+    let finishGameModalElement = document.querySelector("#finishGameModal");
+    let modal = bootstrap.Modal.getInstance(finishGameModalElement);
+    modal.hide();
+    startGame();
+  } else {
+    window.location.href = "scoreboard.html";
   }
 }
