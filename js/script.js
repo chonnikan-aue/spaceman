@@ -35,10 +35,8 @@ let playerNameElement = document.querySelector("#playerName");
 let bodyTableElement = document.querySelector("#bodyTable");
 let timeElement = document.querySelector(".time");
 
-if (link.indexOf("single") !== -1) {
-  alphabet.forEach((a) => {
-    keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
-  });
+if (link.indexOf("single") !== -1 || link.indexOf("multiplayer") !== -1) {
+  addKeyboard()
   timer();
   startGame();
 } else if (link.indexOf("scoreboard") !== -1) {
@@ -58,6 +56,12 @@ if (link.indexOf("single") !== -1) {
   });
 }
 
+function addKeyboard() {
+  alphabet.forEach((a) => {
+    keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
+  });
+}
+
 function timer() {
   timerInterval = setInterval(() => {
     let htmlStr = "";
@@ -66,7 +70,6 @@ function timer() {
       second = 1;
     }
     second -= 1;
-    console.log(minute, second);
     if (timeLeft === -1000) {
       modifyModal("Time's up!");
       clearInterval(timerInterval);
