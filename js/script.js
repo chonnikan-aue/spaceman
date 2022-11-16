@@ -39,12 +39,11 @@ let finishGameModalScoreElement = document.querySelector(
 let bodyTableElement = document.querySelector("#bodyTable");
 
 if (link.indexOf("game") !== -1) {
-  addAskNameModal();
   addGameWindow();
   addGoBackModal();
   addKeyboard();
   startGame();
-  timer();
+  addAskNameModal();
 } else if (link.indexOf("single") !== -1) {
   addGoBackModal();
   addKeyboard();
@@ -75,7 +74,7 @@ function addAskNameModal() {
   let htmlStr = `<button
       type="button"
       id="askNameModalBtn"
-      class="btn btn-danger"
+      class="btn"
       data-bs-toggle="modal"
       data-bs-target="#askNameModal"
     ></button>
@@ -143,6 +142,10 @@ function submitName() {
       let playerNameValue = document.querySelector(`#playerName${i}`).value;
       playerName.push(playerNameValue);
     }
+    let askNameModalElement = document.querySelector("#askNameModal");
+    let modal = bootstrap.Modal.getInstance(askNameModalElement);
+    modal.hide();
+    timer()
   }
 }
 
