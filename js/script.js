@@ -255,7 +255,7 @@ function chooseAlphabet(id) {
       guessWord[i][indexOfWordLowerCase] = alphabetElement.innerText;
       changeDisplayWord(i);
       wordLowerCase[i] = wordLowerCase[i].replace(chosenAlphabet, "_");
-      score[i] += 500;
+      score[i] += 5000;
       indexOfWordLowerCase = wordLowerCase[i].indexOf(chosenAlphabet);
     }
     setTimeout(() => {
@@ -266,7 +266,7 @@ function chooseAlphabet(id) {
   } else {
     let rocketImgElement = document.querySelector(`#rocket${i}`);
     rocketImgElement.src = `img/spaceship/${stageImg[i].shift()}.png`;
-    score[i] -= 250;
+    score[i] -= 1000;
     if (stageImg[i].length === 0) {
       setKeyboardDisable(true);
       clearInterval(timerInterval);
