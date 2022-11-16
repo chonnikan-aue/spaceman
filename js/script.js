@@ -3,16 +3,25 @@ const minute1 = 4;
 const second1 = 60;
 const timeLeft1 = minute1 * 60000 + second1 * 1000;
 let link = window.location.href;
+let playerCount = parseInt(link.split("player=")[1]) - 1;
 let wordLowerCase = []; // ["", ""]
 let guessWord = []; // [[], []]
 let wordUpperCase = []; // ["", ""]
-let stageImg = [
-  ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
-  ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
-];
+let stageImg = [];
+for (let i = 0; i <= playerCount; i++) {
+  stageImg.push([
+    "body",
+    "head",
+    "window",
+    "wing1",
+    "wing2",
+    "wing3",
+    "nozzle",
+    "fire",
+  ]);
+}
 let colorBootstrap = ["primary", "secondary", "success", "info"];
 let score = 0;
-let playerCount = parseInt(link.split("player=")[1]) - 1;
 let minute = minute1;
 let second = second1;
 let timeLeft = timeLeft1;
