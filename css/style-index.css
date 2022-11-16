@@ -16,3 +16,7 @@ body {
 .row {
   margin-bottom: 100px;
 }
+
+.btn {
+  margin: 20px;
+}

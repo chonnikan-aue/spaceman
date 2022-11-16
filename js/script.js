@@ -2,43 +2,42 @@ const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const minute1 = 4;
 const second1 = 60;
 const timeLeft1 = minute1 * 60000 + second1 * 1000;
-let keyboardElement = document.querySelector(".keyboard");
 let chosenWord = "";
 let guessWord = [];
 let word = "";
 let stageImg = [
-  "body",
-  "head",
-  "window",
-  "wing1",
-  "wing2",
-  "wing3",
-  "nozzle",
-  "fire",
+  ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
+  ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
 ];
 let colorBootstrap = ["primary", "secondary", "success", "info"];
 let score = 0;
+let playerCount = 0;
 let minute = minute1;
 let second = second1;
 let timeLeft = timeLeft1;
 let timerInterval;
 let link = window.location.href;
+let keyboardElement = document.querySelectorAll(".keyboard");
+let timeElement = document.querySelectorAll(".time");
 let askNameModalElement = document.querySelector("#askNameModal");
 let askNameModalTitleElement = document.querySelector("#askNameModalTitle");
 let askNameModalBtn = document.querySelector("#askNameModalBtn");
 let askNameModalWordElement = document.querySelector("#askNameModalWord");
 let askNameModalScoreElement = document.querySelector("#askNameModalScore");
 let rocketImgElement = document.querySelector("#rocket");
-let goBackModalBtn = document.querySelector("#goBackModalBtn");
 let labelPlayerNameElement = document.querySelector("label[for='playerName']");
 let playerNameElement = document.querySelector("#playerName");
 let bodyTableElement = document.querySelector("#bodyTable");
-let timeElement = document.querySelector(".time");
 
-if (link.indexOf("single") !== -1 || link.indexOf("multiplayer") !== -1) {
-  addKeyboard()
+if (link.indexOf("single") !== -1) {
+  addGoBackModal();
+  addKeyboard();
   timer();
   startGame();
+} else if (link.indexOf("twoplayer") !== -1) {
+  playerCount = 1;
+  addKeyboard();
+  addGoBackModal();
 } else if (link.indexOf("scoreboard") !== -1) {
   let localStorageSort = Object.keys(localStorage).sort(
     (a, b) => localStorage[b] - localStorage[a]
@@ -56,10 +55,62 @@ if (link.indexOf("single") !== -1 || link.indexOf("multiplayer") !== -1) {
   });
 }
 
+function addGoBackModal() {
+  let modalElement = `<button
+  type="button"
+  id="goBackModalBtn"
+  class="btn"
+  data-bs-toggle="modal"
+  data-bs-target="#goBackModal"
+  ></button>
+
+<div
+  class="modal fade"
+  id="goBackModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-hidden="true"
+>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h1 id="goBackModalTitle" class="modal-title fs-5">
+          We sad to see you go...
+        </h1>
+        <button
+        type="button"
+        class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          ></button>
+          </div>
+          <div class="modal-body">
+          <red>** This will not save your game progress **</red>
+          </div>
+      <div class="modal-footer">
+      <button
+          type="button"
+          class="btn btn-danger"
+          onclick="window.location.href = 'index.html'"
+        >
+          Yes, I want to go.
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>`;
+  document.body.insertAdjacentHTML("afterbegin", modalElement);
+}
+
 function addKeyboard() {
-  alphabet.forEach((a) => {
-    keyboardElement.innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}" onclick="chooseAlphabet(this.id)">${a}</button>`;
-  });
+  for (let i = 0; i <= playerCount; i++) {
+    alphabet.forEach((a) => {
+      keyboardElement[
+        i
+      ].innerHTML += `<button type="button" class="col-2 btn btn-danger btn-lg" id="${a}${i}" onclick="chooseAlphabet(this.id)">${a}</button>`;
+    });
+  }
 }
 
 function timer() {
@@ -99,6 +150,7 @@ function timer() {
 }
 
 function goBack() {
+  let goBackModalBtn = document.querySelector("#goBackModalBtn");
   goBackModalBtn.click();
 }
 
@@ -113,9 +165,11 @@ function hideModal() {
 }
 
 function setKeyboardDisable(bool) {
-  alphabet.forEach((a) => {
-    document.querySelector(`#${a}`).disabled = bool;
-  });
+  for (let i = 0; i <= playerCount; i++) {
+    alphabet.forEach((a) => {
+      document.querySelector(`#${a}${i}`).disabled = bool;
+    });
+  }
 }
 
 function randomWord() {
@@ -197,14 +251,8 @@ function submit(str) {
     document.querySelector("#playerName").value = "";
     if (str === "new game") {
       stageImg = [
-        "body",
-        "head",
-        "window",
-        "wing1",
-        "wing2",
-        "wing3",
-        "nozzle",
-        "fire",
+        ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
+        ["body", "head", "window", "wing1", "wing2", "wing3", "nozzle", "fire"],
       ];
       score = 0;
       timeLeft = timeLeft1;

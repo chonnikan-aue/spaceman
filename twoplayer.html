@@ -39,24 +39,49 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="container text-center">
-      <div class="row">
-        <nav class="nav">
-          <a class="nav-link" onclick="goBack()"
-            ><h1><i class="bi bi-arrow-left-circle"></i></h1
-          ></a>
-        </nav>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="row time"><h1>Time Left: 5:00</h1></div>
-          <div class="row word"></div>
+    <div class="row">
+      <div class="col player1">
+        <div class="container text-center">
+          <div class="row">
+            <nav class="nav">
+              <a class="nav-link" onclick="goBack()"
+                ><h1><i class="bi bi-arrow-left-circle"></i></h1
+              ></a>
+            </nav>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row time"><h1>Time Left: 5:00</h1></div>
+              <div class="row word"></div>
+            </div>
+            <div class="col spaceship">
+              <img id="rocket" src="img/spaceship/none.png" alt="spaceship" />
+            </div>
+          </div>
+          <div class="row keyboard"></div>
         </div>
-        <div class="col spaceship">
-          <img id="rocket" src="img/spaceship/none.png" alt="spaceship" />
+      </div>
+      <div class="col player2">
+        <div class="container text-center">
+          <div class="row">
+            <nav class="nav">
+              <a class="nav-link" style="opacity: 0"
+                ><h1><i class="bi bi-arrow-left-circle"></i></h1
+              ></a>
+            </nav>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="row time"><h1>Time Left: 5:00</h1></div>
+              <div class="row word"></div>
+            </div>
+            <div class="col spaceship">
+              <img id="rocket" src="img/spaceship/none.png" alt="spaceship" />
+            </div>
+          </div>
+          <div class="row keyboard"></div>
         </div>
       </div>
-      <div class="row keyboard"></div>
     </div>
 
     <!-- modal for ask name -->
@@ -113,6 +138,8 @@
         </div>
       </div>
     </div>
+
+    <!-- modal for go back -->
 
     <!-- external js -->
     <script src="/js/script.js"></script>
