@@ -167,7 +167,6 @@ function timer() {
     second -= 1;
     if (timeLeft === -1000) {
       modifyModal("Time's up!");
-      clearInterval(timerInterval);
     } else {
       if (minute === 0) {
         htmlStr = `<red><h1>Time Left: ${minute}:`;
@@ -270,6 +269,7 @@ function chooseAlphabet(id) {
     score[i] -= 250;
     if (stageImg[i].length === 0) {
       setKeyboardDisable(true);
+      clearInterval(timerInterval);
       document.body.style.backgroundImage = "url(/img/bg/space.gif)";
       rocketImgElement.style.animation = "rocket 5s";
       setTimeout(() => {
@@ -281,6 +281,7 @@ function chooseAlphabet(id) {
 }
 
 function modifyModal(str) {
+  clearInterval(timerInterval);
   setKeyboardDisable(true);
   if (str === "win") {
     askNameModalTitleElement.innerText = "Congratulation!";
