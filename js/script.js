@@ -27,7 +27,8 @@ let minute = minute1;
 let second = second1;
 let timeLeft = timeLeft1;
 let timerInterval;
-let bodyTableElement = document.querySelector("#bodyTable");
+let singlePlayerBodyTableElement = document.querySelector("#singlePlayerBodyTable");
+let multiPlayerBodyTableElement = document.querySelector("#multiPlayerBodyTable");
 
 function toggleMultiplayerModeDropdown() {
   let multiplayerElement = document.querySelectorAll(".multiplayer");
@@ -376,7 +377,7 @@ function showFinishGameModal(str) {
 }
 
 function submitScore(str) {
-  localStorage.setItem(playerName, score);
+  localStorage.setItem(JSON.stringify(playerName), JSON.stringify(score));
   if (str === "new game") {
     playerName = [];
     stageImg = [];

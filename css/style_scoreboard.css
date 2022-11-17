@@ -12,12 +12,28 @@ body {
   margin-bottom: 50px;
 }
 
-#table {
+.scoreboard {
   overflow: auto;
-  max-height: 451px;
+  max-height: 207px;
+  margin-bottom: 20px;
 }
 
 thead {
   position: sticky;
   top: 0;
+}
+
+th[scope="col"]:first-child,
+th[scope="row"] {
+  position: sticky;
+  left: 0;
+}
+
+th[scope="row"] {
+  z-index: -1;
+}
+
+td {
+  position: relative;
+  z-index: -2;
 }
