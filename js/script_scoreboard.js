@@ -11,8 +11,6 @@ Object.entries(localStorage).forEach((eachGame) => {
   storage.push(matchPlayerNameAndScore);
 });
 
-console.log(storage);
-
 // single player
 
 storage.forEach((eachGame) => {
@@ -40,8 +38,6 @@ singlePlayerNameAndScoreSort.forEach((eachGame, index) => {
   }</td></tr>`;
 });
 
-console.log("sing", singlePlayerNameAndScore);
-
 // multiplayer
 
 storage.forEach((eachGame) => {
@@ -57,8 +53,6 @@ storage.forEach((eachGame) => {
   }
 });
 
-console.log("notmul", multiPlayerNameAndScore);
-
 let multiPlayerNameAndScoreSort = [];
 
 multiPlayerNameAndScore.forEach((eachGame) => {
@@ -66,10 +60,7 @@ multiPlayerNameAndScore.forEach((eachGame) => {
   multiPlayerNameAndScoreSort.push(eachGame);
 });
 
-console.log(multiPlayerNameAndScoreSort);
-
 multiPlayerNameAndScoreSort.forEach((eachGame, index) => {
-  console.log(eachGame);
   let colorIndex = index;
   if (index >= colorBootstrap.length) {
     colorIndex = index % colorBootstrap.length;
@@ -81,14 +72,11 @@ multiPlayerNameAndScoreSort.forEach((eachGame, index) => {
     htmlStr += `<td>${eachPlayer[0]}</td><td>${eachPlayer[1]}</td>`;
   });
   let placeCountLeft = 4 - eachGame.length;
-  console.log(placeCountLeft);
   if (placeCountLeft > 0) {
     for (let i = 0; i < placeCountLeft; i++) {
       htmlStr += `<td>-</td><td>-</td>`;
     }
   }
   htmlStr += `</tr>`;
-  console.log(htmlStr);
   multiPlayerBodyTableElement.innerHTML += htmlStr;
-  console.log(multiPlayerBodyTableElement);
 });
