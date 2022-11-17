@@ -68,13 +68,13 @@ function showAskNameModal() {
                       <div class="modal-body">`;
   for (let i = 0; i <= playerCount; i++) {
     htmlStr += `<div class="mb-3">
-                  <label for="playerName${i}" class="col-form-label">Player ${
+                  <label for="playerNameInput${i}" class="col-form-label">Player ${
       i + 1
     }:</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="playerName${i}"
+                    id="playerNameInput${i}"
                     required
                   />
                 </div>`;
@@ -95,23 +95,28 @@ function showAskNameModal() {
 function submitName() {
   let check = true;
   for (let i = 0; i <= playerCount; i++) {
-    let playerNameValue = document.querySelector(`#playerName${i}`).value;
+    let playerNameValue = document.querySelector(`#playerNameInput${i}`).value;
     if (playerNameValue === "") {
-      let labelPlayerNameElement = document.querySelector(
-        `label[for="playerName${i}"]`
-      );
-      let playerNameElement = document.querySelector(`#playerName${i}`);
-      labelPlayerNameElement.innerHTML = `Player ${
-        i + 1
-      }: <red>*required</red>`;
-      playerNameElement.style.borderColor = "#bb2d3b";
+      document.querySelector(
+        `label[for="playerNameInput${i}"]`
+      ).innerHTML = `Player ${i + 1}: <red>*required</red>`;
+      document.querySelector(`#playerNameInput${i}`).style.borderColor =
+        "#bb2d3b";
       check = false;
     }
   }
   if (check) {
     for (let i = 0; i <= playerCount; i++) {
-      let playerNameValue = document.querySelector(`#playerName${i}`).value;
+      let playerNameValue = document.querySelector(
+        `#playerNameInput${i}`
+      ).value;
       playerName.push(playerNameValue);
+    }
+    for (let i = 0; i <= playerCount; i++) {
+      document.querySelector(`#playerNameDiv${i}`).innerHTML = `<h3>Player ${
+        i + 1
+      }: ${playerName[i]}</h3>`;
+      document.querySelector(`#score${i}`).innerHTML = `<h3>Score: 0</h3>`;
     }
     document.querySelector("#askNameModalBtn").outerHTML = "";
     let askNameModalElement = document.querySelector("#askNameModal");
@@ -185,6 +190,10 @@ function addGameWindow() {
     htmlStr += `<div class="col player${i}">
       <div class="container text-center">
         <div class="row">
+          <div id="playerNameDiv${i}" class="col"></div>
+          <div id="score${i}" class="col"></div>
+        </div>
+        <div class="row">
           <div class="col">
             <div class="row word"></div>
           </div>
@@ -212,7 +221,6 @@ function addKeyboard() {
 }
 
 function timer() {
-  let timeElement = document.querySelector(".time");
   timerInterval = setInterval(() => {
     let htmlStr = "";
     timeLeft -= 1000;
@@ -238,7 +246,7 @@ function timer() {
           htmlStr += `0${second}</h1>`;
         }
       }
-      timeElement.innerHTML = htmlStr;
+      document.querySelector(".time").innerHTML = htmlStr;
       if (timeLeft % 60000 === 0) {
         minute -= 1;
         second = 60;
@@ -327,6 +335,9 @@ function chooseAlphabet(id) {
       }, 5500);
     }
   }
+  document.querySelector(
+    `#score${i}`
+  ).innerHTML = `<h3>Score: ${score[i]}</h3>`;
   alphabetElement.disabled = true;
 }
 
@@ -356,7 +367,10 @@ function showFinishGameModal(str) {
                       <div class="modal-body">`;
   for (let i = 0; i <= playerCount; i++) {
     score[i] += timeLeft;
-    htmlStr += `<div>Player ${i + 1}:</div>
+    document.querySelector(
+      `#score${i}`
+    ).innerHTML = `<h3>Score: ${score[i]}</h3>`;
+    htmlStr += `<div>Player ${i + 1}: <mark>${playerName[i]}</mark></div>
                 <div>&emsp;&emsp;Your word: <mark>${
                   wordUpperCase[i]
                 }</mark></div>
@@ -401,6 +415,10 @@ function submitScore(str) {
       let rocketImgElement = document.querySelector(`#rocket${i}`);
       rocketImgElement.style.animation = "";
       rocketImgElement.src = "/img/spaceship/none.png";
+      document.querySelector(`#playerNameDiv${i}`).innerHTML = `<h3>Player ${
+        i + 1
+      }:</h3>`;
+      document.querySelector(`#score${i}`).innerHTML = `<h3>Score: 0</h3>`;
     }
     wordLowerCase = [];
     guessWord = [];
@@ -409,8 +427,7 @@ function submitScore(str) {
     timeLeft = timeLeft1;
     minute = minute1;
     second = second1;
-    let timeElement = document.querySelector(".time");
-    timeElement.innerHTML = "<h1>Time Left: 5:00</h1>";
+    document.querySelector(".time").innerHTML = "<h1>Time Left: 5:00</h1>";
     document.body.style.backgroundImage =
       "linear-gradient(to top right, rgb(17, 64, 151), rgb(248, 172, 199))";
     document.querySelector("#finishGameModalBtn").outerHTML = "";
