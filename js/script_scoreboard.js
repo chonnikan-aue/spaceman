@@ -60,6 +60,8 @@ multiPlayerNameAndScore.forEach((eachGame) => {
   multiPlayerNameAndScoreSort.push(eachGame);
 });
 
+multiPlayerNameAndScoreSort.sort((a, b) => b[0][1] - a[0][1]);
+
 multiPlayerNameAndScoreSort.forEach((eachGame, index) => {
   let colorIndex = index;
   if (index >= colorBootstrap.length) {
