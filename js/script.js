@@ -366,7 +366,7 @@ function showFinishGameModal(str) {
                       </div>
                       <div class="modal-body">`;
   for (let i = 0; i <= playerCount; i++) {
-    score[i] += timeLeft;
+    score[i] += timeLeft / 10;
     document.querySelector(
       `#score${i}`
     ).innerHTML = `<h3>Score: ${score[i]}</h3>`;
