@@ -4,9 +4,9 @@ body {
   background-size: cover;
 }
 
-#game-title {
+.header {
   color: white;
-  margin: 120px 0 50px 0;
+  margin: 110px 0 50px 0 !important;
 }
 
 .float-end {

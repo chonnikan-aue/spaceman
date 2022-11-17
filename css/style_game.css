@@ -7,17 +7,8 @@ body {
   max-width: 430px;
 }
 
-.row {
-  margin: 30px;
-  margin-bottom: 0;
-}
-
-.col {
-  margin: 10px;
-}
-
 .keyboard {
-  position: -webkit-sticky; /* Safari */
+  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
 }

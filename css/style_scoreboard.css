@@ -1,11 +1,13 @@
 body {
+  padding-top: 35px;
   background-image: url(/img/bg/bg.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-#game-title {
+.header {
   color: white;
+  margin: -50px 0 -40px 0!important;
 }
 
 .row {
@@ -20,12 +22,14 @@ body {
 
 thead {
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
 }
 
 th[scope="col"]:first-child,
 th[scope="row"] {
   position: sticky;
+  position: -webkit-sticky;
   left: 0;
 }
 

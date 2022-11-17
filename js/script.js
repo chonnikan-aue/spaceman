@@ -27,8 +27,12 @@ let minute = minute1;
 let second = second1;
 let timeLeft = timeLeft1;
 let timerInterval;
-let singlePlayerBodyTableElement = document.querySelector("#singlePlayerBodyTable");
-let multiPlayerBodyTableElement = document.querySelector("#multiPlayerBodyTable");
+let singlePlayerBodyTableElement = document.querySelector(
+  "#singlePlayerBodyTable"
+);
+let multiPlayerBodyTableElement = document.querySelector(
+  "#multiPlayerBodyTable"
+);
 
 function toggleMultiplayerModeDropdown() {
   let multiplayerElement = document.querySelectorAll(".multiplayer");
@@ -109,9 +113,11 @@ function submitName() {
       let playerNameValue = document.querySelector(`#playerName${i}`).value;
       playerName.push(playerNameValue);
     }
+    document.querySelector("#askNameModalBtn").outerHTML = "";
     let askNameModalElement = document.querySelector("#askNameModal");
     let modal = bootstrap.Modal.getInstance(askNameModalElement);
     modal.hide();
+    document.querySelector("#askNameModal").outerHTML = "";
     timer();
   }
 }
@@ -165,7 +171,7 @@ function addGoBackModal() {
 }
 
 function addGameWindow() {
-  let htmlStr = `<div class="container text-center game-window">
+  let htmlStr = `<div class="container text-center">
   <div class="row">
     <nav class="nav">
       <a class="nav-link" onclick="goBack()"
@@ -407,9 +413,11 @@ function submitScore(str) {
     timeElement.innerHTML = "<h1>Time Left: 5:00</h1>";
     document.body.style.backgroundImage =
       "linear-gradient(to top right, rgb(17, 64, 151), rgb(248, 172, 199))";
+    document.querySelector("#finishGameModalBtn").outerHTML = "";
     let finishGameModalElement = document.querySelector("#finishGameModal");
     let modal = bootstrap.Modal.getInstance(finishGameModalElement);
     modal.hide();
+    finishGameModalElement.outerHTML = "";
     startGame();
   } else {
     window.location.href = "scoreboard.html";

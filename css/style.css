@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Share+Tech+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&family=Share+Tech+Mono&display=swap");
 
 * {
   --bs-nav-link-color: #dc3545;
@@ -22,4 +22,18 @@ red {
 
 h1 {
   font-family: "Rubik Bubbles", cursive;
+}
+
+.row {
+  margin: 30px;
+  margin-bottom: 0;
+}
+
+.col {
+  margin: 10px;
+}
+
+h5 {
+  color: white;
+  text-align: left;
 }
