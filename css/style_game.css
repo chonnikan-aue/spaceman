@@ -1,6 +1,5 @@
 body {
-  background-image: linear-gradient(to top right, rgb(17, 64, 151), rgb(248, 172, 199));
-  background-repeat: repeat;
+  background: linear-gradient(to top right, rgb(17, 64, 151), rgb(248, 172, 199)) no-repeat fixed;
 }
 
 #rocket {

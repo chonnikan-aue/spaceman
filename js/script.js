@@ -328,7 +328,7 @@ function chooseAlphabet(id) {
     if (stageImg[i].length === 0) {
       setKeyboardDisable(true);
       clearInterval(timerInterval);
-      document.body.style.backgroundImage = "url(/img/bg/space.gif)";
+      document.body.style.background = "url(/img/bg/space.gif) repeat";
       rocketImgElement.style.animation = "rocket 5s";
       setTimeout(() => {
         showFinishGameModal("You released the rocket!");
@@ -428,8 +428,8 @@ function submitScore(str) {
     minute = minute1;
     second = second1;
     document.querySelector(".time").innerHTML = "<h1>Time Left: 5:00</h1>";
-    document.body.style.backgroundImage =
-      "linear-gradient(to top right, rgb(17, 64, 151), rgb(248, 172, 199))";
+    document.body.style.background =
+      "linear-gradient(to top right, rgb(17, 64, 151), rgb(248, 172, 199)) no-repeat fixed";
     document.querySelector("#finishGameModalBtn").outerHTML = "";
     let finishGameModalElement = document.querySelector("#finishGameModal");
     let modal = bootstrap.Modal.getInstance(finishGameModalElement);
