@@ -54,7 +54,7 @@ I recommend lastest version of Chrome browser in desktop to play the game
 
   - when wrong guessed (-1000 for each alphabet)
 
-  - Time's up (-1000)
+  - Time's up (-100)
   
 > ### Stretch Goals
 
@@ -86,11 +86,11 @@ I recommend lastest version of Chrome browser in desktop to play the game
 
 ![index](https://user-images.githubusercontent.com/116629287/202626756-1e9495be-cab7-463e-a319-b05dde81709c.JPG)
 
-**2. Modal:** when player click Play button to start game
+**2. Modal:** when player click `Play!` button from the first page
 
 ![modal-for-ask-name](https://user-images.githubusercontent.com/116629287/202626648-49bfe725-9e28-48d9-ab9f-c05b86ffc647.JPG)
 
-**3. Game page:** when player click play button from the first page
+**3. Game page:** when player submit their name
 
 ![game](https://user-images.githubusercontent.com/116629287/202626713-1d446dfe-1088-4e27-be1a-d716502281bc.JPG)
 
@@ -98,7 +98,7 @@ I recommend lastest version of Chrome browser in desktop to play the game
 
 ![modal-for-back](https://user-images.githubusercontent.com/116629287/202626617-cbab66e6-e342-4372-93da-9652a52a446a.JPG)
 
-**5. Scoreboard page:** when player click trophy icon from the first page
+**5. Scoreboard page:** when player click trophy icon (🏆) from the first page
 
 ![scoreboard](https://user-images.githubusercontent.com/116629287/202626553-f9cd705a-09ba-41bc-b117-c242544ca450.JPG)
 
@@ -148,7 +148,7 @@ I recommend lastest version of Chrome browser in desktop to play the game
 
 ## Unsolved Problems
 
-Modal does not responsive in mobile devices
+Modal (Bootstrap 5.2) does not responsive in mobile devices
 
 ![image](https://user-images.githubusercontent.com/116629287/202627248-e8ae5eb8-4574-44b4-9bb8-6cd609d26d6c.png)
 
